@@ -1,7 +1,8 @@
 @extends('admin.admin_dashboard')
-@section('title','Profile Edit')
+@section('title', 'Profile Edit')
 
 @section('admin')
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
 
         <div class="ps-3">
@@ -36,8 +37,8 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex flex-column align-items-center text-center">
-                                <img  src="{{ !empty($profileData->photo) ? url('upload/admin_images/' . $profileData->photo) : url('upload/no_image.jpg') }}" alt="Admin"
-                                    class="rounded-circle p-1 bg-primary" width="110">
+                                <img src="{{ !empty($profileData->photo) ? url('upload/admin_images/' . $profileData->photo) : url('upload/no_image.jpg') }}"
+                                    alt="Admin" class="rounded-circle p-1 bg-primary" width="110">
                                 <div class="mt-3">
                                     <h4>{{ $profileData->name }}</h4>
                                     <p class="text-secondary mb-1">{{ $profileData->email }}</p>
@@ -99,7 +100,7 @@
                 </div>
                 <div class="col-lg-8">
                     <div class="card">
-                        <form action="{{route('admin.profile.store')}}" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('admin.profile.store') }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="card-body">
                                 <div class="row mb-3">
@@ -144,8 +145,8 @@
                                         <h6 class="mb-0">Photo</h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
-                                        <input name="photo" style="" id="images"  type="file"
-                                            value="{{ $profileData->photo }}" >
+                                        <input name="photo" style="" id="image" type="file"
+                                            value="{{ $profileData->photo }}">
 
                                     </div>
                                 </div>

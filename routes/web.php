@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -32,14 +33,11 @@ Route::middleware('auth')->group(function () {
 require __DIR__ . '/auth.php';
 // todo route admin middleware
 Route::middleware(['auth', 'roles:admin'])->group(function () {
-
-
     Route::get('/admin/dashboard', [AdminController::class, 'AdminDashboard'])->name('admin.dashboard');
-    Route::get('/admin/logout',[AdminController::class,'AdminLogout'])->name('admin.logout');
-    Route::get('/admin/profile',[AdminController::class,'AdminProfile'])->name('admin.profile');
-    Route::post('/admin/proflie/store',[AdminController::class,'AdminProfileStore'])->name('admin.profile.store');
-
+    Route::get('/admin/logout', [AdminController::class, 'AdminLogout'])->name('admin.logout');
+    Route::get('/admin/profile', [AdminController::class, 'AdminProfile'])->name('admin.profile');
+    Route::post('/admin/proflie/store', [AdminController::class, 'AdminProfileStore'])->name('admin.profile.store');
+    Route::get('/admin/password/change', [AdminController::class, 'AdminPasswordChange'])->name('admin.password.change');
+    Route::post('/admin/password/update', [AdminController::class, 'AdminPasswordUpdate'])->name('admin.password.update');
 });
-Route::get('/admin/password/change',[AdminController::class,'AdminPasswordChange'])->name('admin.password.change');
-Route::post('/admin/password/update',[AdminController::class,'AdminPasswordUpdate'])->name('admin.password.update');
-Route::get('/admin/login',[AdminController::class,'AdminLogin'])->name('admin.login');
+Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->name('admin.login');

@@ -25,8 +25,11 @@ class AdminController extends Controller
         $request->session()->invalidate();
 
         $request->session()->regenerateToken();
-
-        return redirect('/admin/login');
+        $notification = array(
+            'message' => 'Logout Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
     }
     public function AdminProfile()
     {
@@ -87,5 +90,5 @@ class AdminController extends Controller
         );
         return redirect()->back()->with($notification);
     }
-    
+
 }

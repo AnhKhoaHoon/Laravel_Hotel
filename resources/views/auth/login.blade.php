@@ -33,13 +33,13 @@
                             <div class="row">
                                 <div class="col-lg-12 ">
                                     <div class="form-group">
-                                        <input name="login" type="text" id="login" class="form-control" required data-error="Please enter your Username or Email" placeholder="">
+                                        <input placeholder="Please enter your field " name="login" type="text" id="login" class="form-control" required data-error="Please enter your Username or Email" placeholder="">
                                     </div>
                                 </div>
 
                                 <div class="col-12">
                                     <div class="form-group">
-                                        <input name="password" class="form-control" type="password" placeholder="">
+                                        <input placeholder="Please enter your password" name="password" class="form-control" type="password" placeholder="">
                                     </div>
                                 </div>
 

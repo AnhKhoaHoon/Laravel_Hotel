@@ -27,10 +27,9 @@ class UsersTableSeeder extends Seeder
             [
                 'name'=>'User',
                 'email'=>'user@gmail.com',
-                'password'=>Hash::make('user@gmail.com'),
+                'password'=>Hash::make('user1@gmail.com'),
                 'status'=>'active',
                 'role'=>'user',
-
             ]
         ]);
     }

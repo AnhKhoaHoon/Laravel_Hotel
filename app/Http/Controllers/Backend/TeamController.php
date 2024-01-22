@@ -7,6 +7,7 @@ use App\Models\Team;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
+
 class TeamController extends Controller
 {
     // ham AllTeam de hien thi thong tin cua team(tuong ung voi ham index)
@@ -18,38 +19,86 @@ class TeamController extends Controller
     public function AddTeam()
     {
         $dataTeam = Team::latest()->get();
-        return view('backend.team.add_team',compact('dataTeam'));
+        return view('backend.team.add_team', compact('dataTeam'));
     }
     public function StoreTeam(Request $request)
     {
         $image = $request->file('image');
-        //
-        $image_gen=hexdec(uniqid()) .'-'.$image->getClientOriginalExtension();
-        Image::make($image)->resize(550,670)->save('upload/team_images'.$image_gen);
-        $saveUrl='upload/team_images'.$image_gen;
+        $image_gen = hexdec(uniqid()) . '-' . $image->getClientOriginalExtension();
+        Image::make($image)->resize(550, 670)->save('upload/team_images/' . $image_gen);
+        $saveUrl = 'upload/team_images/' . $image_gen;
 
         Team::insert([
-            'name'=>$request->name,
-            'position'=>$request->position,
-            'link_fb'=>$request->link_fb,
-            'image'=>$saveUrl,
-            'created_at'=>Carbon::now(),
+            'name' => $request->name,
+            'position' => $request->position,
+            'link_fb' => $request->link_fb,
+            'image' => $saveUrl,
+            'created_at' => Carbon::now(),
 
         ]);
-        $notification =array(
-            'message'=>'Team Data Insert Successfully',
-            'alert-type'=>'success'
+
+        $notification = array(
+            'message' => 'Team Data Insert Successfully',
+            'alert-type' => 'success'
         );
         return redirect()->route('all.team')->with($notification);
     }
-    public function EditTeam()
+    public function EditTeam($id)
     {
-      
+        $dataTeam = Team::findOrFail($id);
+        return view('backend.team.edit_team', compact('dataTeam'));
     }
-    public function UpdateTeam()
+    public function UpdateTeam(Request $request)
     {
+        $id = $request->id;
+        if ($request->file('image')) {
+            $image = $request->file('image');
+            $image_gen = hexdec(uniqid()) . '-' . $image->getClientOriginalExtension();
+            Image::make($image)->resize(550, 670)->save('upload/team_images/' . $image_gen);
+            $saveUrl = 'upload/team_images/' . $image_gen;
+
+            Team::findOrFail($id)->update([
+                'name' => $request->name,
+                'position' => $request->position,
+                'link_fb' => $request->link_fb,
+                'image' => $saveUrl,
+                'created_at' => Carbon::now(),
+
+            ]);
+
+            $notification = array(
+                'message' => 'Team Data Updated Successfully',
+                'alert-type' => 'success'
+            );
+            return redirect()->route('all.team')->with($notification);
+        } else {
+            Team::findOrFail($id)->update([
+                'name' => $request->name,
+                'position' => $request->position,
+                'link_fb' => $request->link_fb,
+                'created_at' => Carbon::now(),
+
+            ]);
+
+            $notification = array(
+                'message' => 'Team Updated Without Image Unsuccessfully',
+                'alert-type' => 'danger'
+            );
+            return redirect()->route('all.team')->with($notification);
+        }
     }
-    public function DeleteTeam()
+    public function DeleteTeam($id)
     {
+        $dataTeam = Team::findOrFail($id);
+        $image = $dataTeam->image;
+        unlink($image);
+
+        Team::findOrFail($id)->delete();
+
+        $notification = array(
+            "message" => 'Team Deleted Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
     }
 }

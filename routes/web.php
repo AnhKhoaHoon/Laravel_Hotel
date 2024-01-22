@@ -49,7 +49,7 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
         Route::get('/add/team','AddTeam')->name('add.team');
         Route::post('/team/store','StoreTeam')->name('store.team');
         Route::get('/edit/team/{id}','EditTeam')->name('edit.team');
-        Route::post('/team/update','UpdateTeam')->name('update.team');
+        Route::post('/team/update','UpdateTeam')->name('team.update');
         Route::get('/team/delete/{id}','DeleteTeam')->name('delete.team');
     });
 });

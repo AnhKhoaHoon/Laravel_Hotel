@@ -34,10 +34,11 @@
     <div class="row">
         <div class="col-xl-12 mx-auto">
             <div class="card">
-                <form action="{{route('edit.team',$dataTeam->id)}}" method="post" enctype="multipart/form-data">
+                <form action="{{route('team.update')}}" method="post" enctype="multipart/form-data">
                     @csrf
                 <div class="card-body p-4">
-                    <h5 class="mb-4">Update Name</h5>
+                    <h5 class="mb-4">Update </h5>
+                    <input type="hidden" name="id" value="{{$dataTeam->id}}">
                     <div class="row mb-3">
                         <label for="input42" class="col-sm-3 col-form-label">Enter Your Name</label>
                         <div class="col-sm-9">
@@ -80,9 +81,9 @@
                             <h6 class="mb-0">Image</h6>
                         </div>
                         <div class="col-sm-9 text-secondary">
-                            {{-- <img id="showImage"
-                                src="{{ !empty($profileData->photo) ? url('upload/admin_images/' . $profileData->image) : url('upload/no_image.jpg') }}"
-                                width="80" height="80" class="rounded-circle shadow" alt=""> --}}
+                            <img id="showImage"
+                                src="{{asset($dataTeam->image)}}"
+                                width="80" height="80" class="rounded-circle shadow" alt="">
                         </div>
                     </div>
                     <div class="row mb-3">
@@ -98,8 +99,8 @@
                         <label class="col-sm-3 col-form-label"></label>
                         <div class="col-sm-9">
                             <div class="d-md-flex d-grid align-items-center gap-3">
-                                <button type="button" class="btn btn-primary px-4">Submit</button>
-                                <button type="button" class="btn btn-light px-4">Reset</button>
+                                <button type="submit" class="btn btn-primary px-4">Submit</button>
+                                <button type="reset" class="btn btn-light px-4">Reset</button>
                             </div>
                         </div>
                     </div>

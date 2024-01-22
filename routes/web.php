@@ -48,7 +48,7 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
         Route::get('/all/team', 'AllTeam')->name('all.team');
         Route::get('/add/team','AddTeam')->name('add.team');
         Route::post('/team/store','StoreTeam')->name('store.team');
-        Route::get('/team/edit/{id}','EditTeam')->name('edit.team');
+        Route::get('/edit/team/{id}','EditTeam')->name('edit.team');
         Route::post('/team/update','UpdateTeam')->name('update.team');
         Route::get('/team/delete/{id}','DeleteTeam')->name('delete.team');
     });

@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
+use App\Http\Controllers\Backend\BookAreaController;
+use App\Http\Controllers\Backend\RoomTypeController;
 use App\Http\Controllers\Backend\TeamController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
@@ -46,11 +48,25 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
     //Todo Team Route
     Route::controller(TeamController::class)->group(function () {
         Route::get('/all/team', 'AllTeam')->name('all.team');
-        Route::get('/add/team','AddTeam')->name('add.team');
-        Route::post('/team/store','StoreTeam')->name('store.team');
-        Route::get('/edit/team/{id}','EditTeam')->name('edit.team');
-        Route::post('/team/update','UpdateTeam')->name('team.update');
-        Route::get('/team/delete/{id}','DeleteTeam')->name('delete.team');
+        Route::get('/add/team', 'AddTeam')->name('add.team');
+        Route::post('/team/store', 'StoreTeam')->name('store.team');
+        Route::get('/edit/team/{id}', 'EditTeam')->name('edit.team');
+        Route::post('/team/update', 'UpdateTeam')->name('team.update');
+        Route::get('/team/delete/{id}', 'DeleteTeam')->name('delete.team');
+    });
+    //Todo Book Area Route
+    Route::controller(BookAreaController::class)->group(function () {
+        Route::get('/book/area/', 'BookArea')->name('book.area');
+        Route::post('/book/area/update', 'BookAreaUpdate')->name('book.area.update');
+    });
+       //Todo Room Type Route
+       Route::controller(RoomTypeController::class)->group(function () {
+        Route::get('/room/type/list/', 'RoomTypeList')->name('room.type.list');
+        Route::get('/add/room/type','AddRoomType')->name('add.room.type');
+        Route::post('/room/type/store','RoomTypeStore')->name('room.type.store');
+        Route::get('/edit/room/type/{id}','EditRoomType')->name('edit.room.type');
+        Route::post('/room/type/update','RoomTypeUpdate')->name('room.type.update');
+        Route::get('/room/type/delete{id}','RoomTypeDelete')->name('room.type.delete');
     });
 });
 Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->name('admin.login');

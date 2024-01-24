@@ -11,4 +11,5 @@ class Room extends Model
     protected $guarded =[
 
     ];
+    public function type(){}
 }

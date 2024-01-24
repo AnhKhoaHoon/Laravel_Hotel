@@ -40,54 +40,65 @@
                                             <form class="row g-3">
                                                 <div class="col-md-12">
                                                     <label for="input1" class="form-label">Room Type Name </label>
-                                                    <input type="text" name="room_type_id" class="form-control" placeholder="Enter Room Type Name"
-                                                        id="input1" value="{{ $edit_data['type']['name'] }}">
+                                                    <input type="text" name="room_type_id" class="form-control"
+                                                        placeholder="Enter Room Type Name" id="input1"
+                                                        value="{{ $edit_data['type']['name'] }}">
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label for="input2" class="form-label">Total Adult</label>
-                                                    <input type="text" name="total_adult" class="form-control" placeholder="Enter Total Adult"
-                                                        id="input2" value="{{ $edit_data->total_adult }}">
+                                                    <input type="text" name="total_adult" class="form-control"
+                                                        placeholder="Enter Total Adult" id="input2"
+                                                        value="{{ $edit_data->total_adult }}">
                                                 </div>
 
                                                 <div class="col-md-6">
                                                     <label for="input3" class="form-label">Total Child </label>
-                                                    <input type="text" name="total_child" class="form-control" placeholder="Enter Total Child"
-                                                        id="input3" value="{{ $edit_data->total_child }}">
+                                                    <input type="text" name="total_child" class="form-control"
+                                                        placeholder="Enter Total Child" id="input3"
+                                                        value="{{ $edit_data->total_child }}">
                                                 </div>
 
 
                                                 <div class="col-md-6">
                                                     <label for="input4" class="form-label">Main Image </label>
-                                                    <input type="file" name="image" class="form-control" id="input4"
-                                                        >
+                                                    <input type="file" name="image" class="form-control"
+                                                        id="image">
+
+                                                    <img id="showImage"
+                                                        src="{{ !empty($edit_data->image) ? url('upload/room_images/' . $edit_data->image) : url('upload/no_image.jpg') }}"
+                                                        alt="Admin" class="bg-primary" width="60">
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label for="input5" class="form-label">Gallery Image </label>
-                                                    <input type="file" name="multi_img[]" class="form-control"
+                                                    <input type="file" name="multi_img[]" class="form-control" multiple
                                                         id="multiImg" accept="image/jpeg, image/jpg, image/gif, image/png">
+                                                    <div class="row" id="preview_img"></div>
                                                 </div>
 
 
                                                 <div class="col-md-6">
                                                     <label for="input77" class="form-label">Room Price </label>
-                                                    <input type="text" name="price" class="form-control" id="input77" placeholder="Enter Room Price"
-                                                        value="{{ $edit_data->price }}">
+                                                    <input type="text" name="price" class="form-control" id="input77"
+                                                        placeholder="Enter Room Price" value="{{ $edit_data->price }}">
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label for="input7" class="form-label">Discount ( % )</label>
-                                                    <input type="text" name="discount" class="form-control" placeholder="Enter Discount"
-                                                        id="input6" value="{{ $edit_data->discount }}">
+                                                    <input type="text" name="discount" class="form-control"
+                                                        placeholder="Enter Discount" id="input6"
+                                                        value="{{ $edit_data->discount }}">
                                                 </div>
 
                                                 <div class="col-md-6">
                                                     <label for="input8" class="form-label">Room Capacity </label>
-                                                    <input type="text" name="room_capacity" class="form-control" placeholder="Enter Room Capacity"
-                                                        id="input7" value="{{ $edit_data->room_capacity }}">
+                                                    <input type="text" name="room_capacity" class="form-control"
+                                                        placeholder="Enter Room Capacity" id="input7"
+                                                        value="{{ $edit_data->room_capacity }}">
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label for="input9" class="form-label">Room Size </label>
-                                                    <input type="text" name="size" class="form-control" placeholder="Enter Room Size"
-                                                        id="input8" value="{{ $edit_data->size }}">
+                                                    <input type="text" name="size" class="form-control"
+                                                        placeholder="Enter Room Size" id="input8"
+                                                        value="{{ $edit_data->size }}">
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label for="input12" class="form-label">Room View </label>
@@ -110,22 +121,22 @@
                                                 </div>
                                                 <div class="col-md-12">
                                                     <label for="input10" class="form-label">Short Description</label>
-                                                    <textarea  name="short_desc"  class="form-control" rows="3" >
-                                                        {{$edit_data->short_desc}}
+                                                    <textarea name="short_desc" class="form-control" rows="3">
+                                                        {{ $edit_data->short_desc }}
                                                     </textarea>
                                                 </div>
                                                 <div class="col-md-12">
                                                     <label for="input11" class="form-label">Description</label>
-                                                    <textarea name="description"id="myeditorinstance"  class="form-control" >
-                                                        {{$edit_data->description }}
+                                                    <textarea name="description"id="myeditorinstance" class="form-control">
+                                                        {{ $edit_data->description }}
                                                     </textarea>
                                                 </div>
 
                                                 <div class="col-md-12">
                                                     <div class="d-md-flex d-grid align-items-center gap-3">
-                                                        <button type="button"
+                                                        <button type="submit"
                                                             class="btn btn-primary px-4">Submit</button>
-                                                        <button type="button" class="btn btn-light px-4">Reset</button>
+                                                        <button type="reset" class="btn btn-light px-4">Reset</button>
                                                     </div>
                                                 </div>
                                             </form>
@@ -152,4 +163,50 @@
                 </div>
             </div>
         </div>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('#image').change(function(e) {
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        $('#showImage').attr('src', e.target.result);
+                    }
+                    reader.readAsDataURL(e.target.files['0']);
+                });
+            });
+        </script>
+
+
+        <!--------===Show MultiImage ========------->
+        <script>
+            $(document).ready(function() {
+                $('#multiImg').on('change', function() { //on file input change
+                    if (window.File && window.FileReader && window.FileList && window
+                        .Blob) //check File API supported browser
+                    {
+                        var data = $(this)[0].files; //this file data
+
+                        $.each(data, function(index, file) { //loop though each file
+                            if (/(\.|\/)(gif|jpe?g|png)$/i.test(file
+                                .type)) { //check supported file type
+                                var fRead = new FileReader(); //new filereader
+                                fRead.onload = (function(file) { //trigger function on successful read
+                                    return function(e) {
+                                        var img = $('<img/>').addClass('thumb').attr('src',
+                                                e.target.result).width(100)
+                                            .height(80); //create image element
+                                        $('#preview_img').append(
+                                        img); //append image to output element
+                                    };
+                                })(file);
+                                fRead.readAsDataURL(file); //URL representing the file's data.
+                            }
+                        });
+
+                    } else {
+                        alert("Your browser doesn't support File API!"); //if File API is absent
+                    }
+                });
+            });
+        </script>
+    </div>
     @endsection

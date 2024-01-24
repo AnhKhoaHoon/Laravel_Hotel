@@ -1,5 +1,5 @@
 @extends('admin.admin_dashboard')
-@section('title','Edit Room')
+@section('title', 'Edit Room')
 @section('admin')
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <div class="container">
@@ -36,78 +36,91 @@
 
                                     <div class="card">
                                         <div class="card-body p-4">
-                                            <h5 class="mb-4">Vertical Form</h5>
+                                            <h5 class="mb-4">Update Room </h5>
                                             <form class="row g-3">
+                                                <div class="col-md-12">
+                                                    <label for="input1" class="form-label">Room Type Name </label>
+                                                    <input type="text" name="room_type_id" class="form-control" placeholder="Enter Room Type Name"
+                                                        id="input1" value="{{ $edit_data['type']['name'] }}">
+                                                </div>
                                                 <div class="col-md-6">
-                                                    <label for="input1" class="form-label">First Name</label>
-                                                    <input type="text" class="form-control" id="input1"
-                                                        placeholder="First Name">
+                                                    <label for="input2" class="form-label">Total Adult</label>
+                                                    <input type="text" name="total_adult" class="form-control" placeholder="Enter Total Adult"
+                                                        id="input2" value="{{ $edit_data->total_adult }}">
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <label for="input3" class="form-label">Total Child </label>
+                                                    <input type="text" name="total_child" class="form-control" placeholder="Enter Total Child"
+                                                        id="input3" value="{{ $edit_data->total_child }}">
+                                                </div>
+
+
+                                                <div class="col-md-6">
+                                                    <label for="input4" class="form-label">Main Image </label>
+                                                    <input type="file" name="image" class="form-control" id="input4"
+                                                        >
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <label for="input2" class="form-label">Last Name</label>
-                                                    <input type="text" class="form-control" id="input2"
-                                                        placeholder="Last Name">
+                                                    <label for="input5" class="form-label">Gallery Image </label>
+                                                    <input type="file" name="multi_img[]" class="form-control"
+                                                        id="multiImg" accept="image/jpeg, image/jpg, image/gif, image/png">
                                                 </div>
-                                                <div class="col-md-12">
-                                                    <label for="input3" class="form-label">Phone</label>
-                                                    <input type="text" class="form-control" id="input3"
-                                                        placeholder="Phone">
+
+
+                                                <div class="col-md-6">
+                                                    <label for="input77" class="form-label">Room Price </label>
+                                                    <input type="text" name="price" class="form-control" id="input77" placeholder="Enter Room Price"
+                                                        value="{{ $edit_data->price }}">
                                                 </div>
-                                                <div class="col-md-12">
-                                                    <label for="input4" class="form-label">Email</label>
-                                                    <input type="email" class="form-control" id="input4"
-                                                        placeholder="Email">
+                                                <div class="col-md-6">
+                                                    <label for="input7" class="form-label">Discount ( % )</label>
+                                                    <input type="text" name="discount" class="form-control" placeholder="Enter Discount"
+                                                        id="input6" value="{{ $edit_data->discount }}">
                                                 </div>
-                                                <div class="col-md-12">
-                                                    <label for="input5" class="form-label">Password</label>
-                                                    <input type="password" class="form-control" id="input5"
-                                                        placeholder="Password">
+
+                                                <div class="col-md-6">
+                                                    <label for="input8" class="form-label">Room Capacity </label>
+                                                    <input type="text" name="room_capacity" class="form-control" placeholder="Enter Room Capacity"
+                                                        id="input7" value="{{ $edit_data->room_capacity }}">
                                                 </div>
-                                                <div class="col-md-12">
-                                                    <label for="input6" class="form-label">DOB</label>
-                                                    <input type="date" class="form-control" id="input6"
-                                                        placeholder="Date of Birth">
+                                                <div class="col-md-6">
+                                                    <label for="input9" class="form-label">Room Size </label>
+                                                    <input type="text" name="size" class="form-control" placeholder="Enter Room Size"
+                                                        id="input8" value="{{ $edit_data->size }}">
                                                 </div>
-                                                <div class="col-md-12">
-                                                    <label for="input7" class="form-label">Country</label>
-                                                    <select id="input7" class="form-select">
+                                                <div class="col-md-6">
+                                                    <label for="input12" class="form-label">Room View </label>
+                                                    <select name="view" id="input9" class="form-select">
                                                         <option selected="">Choose...</option>
-                                                        <option>One</option>
-                                                        <option>Two</option>
-                                                        <option>Three</option>
+                                                        <option value="Sea View">Sea View </option>
+                                                        <option value="Hill View">Hill View </option>
+
                                                     </select>
                                                 </div>
 
                                                 <div class="col-md-6">
-                                                    <label for="input8" class="form-label">City</label>
-                                                    <input type="text" class="form-control" id="input8"
-                                                        placeholder="City">
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <label for="input9" class="form-label">State</label>
-                                                    <select id="input9" class="form-select">
+                                                    <label for="input13" class="form-label">Bed Style</label>
+                                                    <select name="bed_style" id="input10" class="form-select">
                                                         <option selected="">Choose...</option>
-                                                        <option>One</option>
-                                                        <option>Two</option>
-                                                        <option>Three</option>
+                                                        <option value="Queen Bed"> Queen Bed </option>
+                                                        <option value="Twin Bed">Twin Bed </option>
+                                                        <option value="King Bed">King Bed </option>
                                                     </select>
                                                 </div>
-                                                <div class="col-md-2">
-                                                    <label for="input10" class="form-label">Zip</label>
-                                                    <input type="text" class="form-control" id="input10"
-                                                        placeholder="Zip">
+                                                <div class="col-md-12">
+                                                    <label for="input10" class="form-label">Short Description</label>
+                                                    <textarea  name="short_desc"  class="form-control" rows="3" >
+                                                        {{$edit_data->short_desc}}
+                                                    </textarea>
                                                 </div>
                                                 <div class="col-md-12">
-                                                    <label for="input11" class="form-label">Address</label>
-                                                    <textarea class="form-control" id="input11" placeholder="Address ..." rows="3"></textarea>
+                                                    <label for="input11" class="form-label">Description</label>
+                                                    <textarea name="description"id="myeditorinstance"  class="form-control" >
+                                                        {{$edit_data->description }}
+                                                    </textarea>
                                                 </div>
-                                                <div class="col-md-12">
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" id="input12">
-                                                        <label class="form-check-label" for="input12">Check me
-                                                            out</label>
-                                                    </div>
-                                                </div>
+
                                                 <div class="col-md-12">
                                                     <div class="d-md-flex d-grid align-items-center gap-3">
                                                         <button type="button"
@@ -119,22 +132,24 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="tab-pane fade" id="primaryprofile" role="tabpanel">
-                                <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid.
-                                    Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson
-                                    artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo
-                                    enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud
-                                    organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia
-                                    yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes
-                                    anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson
-                                    biodiesel. Art party scenester stumptown, tumblr butcher vero sint qui sapiente
-                                    accusamus tattooed echo park.</p>
+                                <div class="tab-pane fade" id="primaryprofile" role="tabpanel">
+                                    <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee
+                                        squid.
+                                        Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson
+                                        artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress,
+                                        commodo
+                                        enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud
+                                        organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS
+                                        salvia
+                                        yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes
+                                        anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson
+                                        biodiesel. Art party scenester stumptown, tumblr butcher vero sint qui sapiente
+                                        accusamus tattooed echo park.</p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-@endsection
+    @endsection

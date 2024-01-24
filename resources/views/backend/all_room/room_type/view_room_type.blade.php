@@ -47,11 +47,14 @@
                                 </td>
                                 <td>{{ $roomType->name }}</td>
                                 <td>
-                                    <a href="{{ route('edit.room.type', $roomType->id) }}"
-                                        class="btn btn-warning px-3 radius-30"> Edit</a>
+                                    @foreach ($rooms as $room_data)
+                                        <a href="{{ route('edit.room', $room_data->id) }}"
+                                            class="btn btn-warning px-3 radius-30"> Edit</a>
 
-                                    <a href="{{ route('room.type.delete', $roomType->id) }}" id="delete"
-                                        class="btn btn-danger px-3 radius-30"> Delete</a>
+                                        <a href="" id="delete"
+                                            class="btn btn-danger px-3 radius-30"> Delete</a>
+                                    @endforeach
+
                                 </td>
                             </tr>
                         @endforeach

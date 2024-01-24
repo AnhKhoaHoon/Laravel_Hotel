@@ -1,12 +1,14 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\RoomController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Backend\BookAreaController;
 use App\Http\Controllers\Backend\RoomTypeController;
 use App\Http\Controllers\Backend\TeamController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
+use App\Models\RoomType;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -59,14 +61,18 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
         Route::get('/book/area/', 'BookArea')->name('book.area');
         Route::post('/book/area/update', 'BookAreaUpdate')->name('book.area.update');
     });
-       //Todo Room Type Route
-       Route::controller(RoomTypeController::class)->group(function () {
+    //Todo Room Type Route
+    Route::controller(RoomTypeController::class)->group(function () {
         Route::get('/room/type/list/', 'RoomTypeList')->name('room.type.list');
-        Route::get('/add/room/type','AddRoomType')->name('add.room.type');
-        Route::post('/room/type/store','RoomTypeStore')->name('room.type.store');
-        Route::get('/edit/room/type/{id}','EditRoomType')->name('edit.room.type');
-        Route::post('/room/type/update','RoomTypeUpdate')->name('room.type.update');
-        Route::get('/room/type/delete{id}','RoomTypeDelete')->name('room.type.delete');
+        Route::get('/add/room/type', 'AddRoomType')->name('add.room.type');
+        Route::post('/room/type/store', 'RoomTypeStore')->name('room.type.store');
+        Route::get('/edit/room/type/{id}', 'EditRoomType')->name('edit.room.type');
+        Route::post('/room/type/update', 'RoomTypeUpdate')->name('room.type.update');
+        Route::get('/room/type/delete{id}', 'RoomTypeDelete')->name('room.type.delete');
+    });
+    //Todo Room Route
+    Route::controller(RoomController::class)->group(function () {
+        Route::get('/edit/room/{id}', 'EditRoom')->name('edit.room');
     });
 });
 Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->name('admin.login');

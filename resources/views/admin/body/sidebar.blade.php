@@ -50,7 +50,7 @@
             <a href="javascript:;" class="has-arrow">
                 <div class="parent-icon"><i class="bx bx-category"></i>
                 </div>
-                <div class="menu-title">Manage Room type</div>
+                <div class="menu-title">Manage Room Type</div>
             </a>
             <ul>
                 <li> <a href="{{route('room.type.list')}}"><i class='bx bx-radio-circle'></i>View Room Type</a>

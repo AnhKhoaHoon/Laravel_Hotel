@@ -29,6 +29,7 @@
                         <thead>
                             <tr>
                                 <th>SN</th>
+                                <th>Image</th>
                                 <th>Name</th>
                                 <th>Action</th>
                             </tr>
@@ -37,6 +38,7 @@
                             @foreach ($roomType as $key => $roomType )
                             <tr>
                                 <td>{{$key +1 }}</td>
+                                <td></td>
                                 <td>{{$roomType->name}}</td>
                                 <td>
                                     <a href="{{route('edit.room.type',$roomType->id)}}" class="btn btn-warning px-3 radius-30"> Edit</a>

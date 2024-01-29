@@ -37,7 +37,8 @@
                                     <div class="card">
                                         <div class="card-body p-4">
                                             <h5 class="mb-4">Update Room </h5>
-                                            <form class="row g-3" action="update.room" method="post" enctype="multipart/form-data">
+                                            <form class="row g-3" action="update.room" method="post"
+                                                enctype="multipart/form-data">
                                                 @csrf
                                                 <div class="col-md-12">
                                                     <label for="input1" class="form-label">Room Type Name </label>
@@ -67,20 +68,30 @@
 
                                                     <img id="showImage"
                                                         src="{{ !empty($edit_data->image) ? url('upload/room_images/' . $edit_data->image) : url('upload/no_image.jpg') }}"
-                                                        alt="Admin" class="bg-primary" width="60">
+                                                        alt="Admin" class="bg-primary" width="70" height="50">
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label for="input5" class="form-label">Gallery Image </label>
                                                     <input type="file" name="multi_img[]" class="form-control" multiple
                                                         id="multiImg" accept="image/jpeg, image/jpg, image/gif, image/png">
+                                                    @foreach ($multi_imgs as $multi_images)
+                                                        <img id="showImage"
+                                                            src="{{ !empty($multi_images->multi_img) ? url('upload/room_images/multi_images' . $multi_images->multi_img) : url('upload/no_image.jpg') }}"
+                                                            alt="Admin" class="bg-primary" width="70" height="50">
+                                                        <a href="">
+                                                            <i class="Ini Ini-close">
+                                                            </i>
+                                                        </a>
+                                                    @endforeach
                                                     <div class="row" id="preview_img"></div>
                                                 </div>
 
 
                                                 <div class="col-md-6">
                                                     <label for="input77" class="form-label">Room Price </label>
-                                                    <input type="text" name="price" class="form-control" id="input77"
-                                                        placeholder="Enter Room Price" value="{{ $edit_data->price }}">
+                                                    <input type="text" name="price" class="form-control"
+                                                        id="input77" placeholder="Enter Room Price"
+                                                        value="{{ $edit_data->price }}">
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label for="input7" class="form-label">Discount ( % )</label>
@@ -105,8 +116,12 @@
                                                     <label for="input12" class="form-label">Room View </label>
                                                     <select name="view" id="input9" class="form-select">
                                                         <option selected="">Choose...</option>
-                                                        <option value="Sea View" {{$edit_data->view=='Sea View' ? 'selected':'' }}>Sea View </option>
-                                                        <option value="Hill View" {{$edit_data->view=='Hill View' ? 'selected':'' }}>Hill View </option>
+                                                        <option value="Sea View"
+                                                            {{ $edit_data->view == 'Sea View' ? 'selected' : '' }}>Sea View
+                                                        </option>
+                                                        <option value="Hill View"
+                                                            {{ $edit_data->view == 'Hill View' ? 'selected' : '' }}>Hill View
+                                                        </option>
 
                                                     </select>
                                                 </div>
@@ -115,9 +130,15 @@
                                                     <label for="input13" class="form-label">Bed Style</label>
                                                     <select name="bed_style" id="input10" class="form-select">
                                                         <option selected="">Choose...</option>
-                                                        <option value="Queen Bed" {{$edit_data->bed_style=='Queen Bed' ? 'selected':'' }}> Queen Bed </option>
-                                                        <option value="Twin Bed" {{$edit_data->bed_style=='Twin Bed' ? 'selected':'' }}>Twin Bed </option>
-                                                        <option value="King Bed" {{$edit_data->bed_style=='King Bed' ? 'selected':'' }}>King Bed </option>
+                                                        <option value="Queen Bed"
+                                                            {{ $edit_data->bed_style == 'Queen Bed' ? 'selected' : '' }}> Queen
+                                                            Bed </option>
+                                                        <option value="Twin Bed"
+                                                            {{ $edit_data->bed_style == 'Twin Bed' ? 'selected' : '' }}>Twin
+                                                            Bed </option>
+                                                        <option value="King Bed"
+                                                            {{ $edit_data->bed_style == 'King Bed' ? 'selected' : '' }}>King
+                                                            Bed </option>
                                                     </select>
                                                 </div>
                                                 <div class="col-md-12">
@@ -218,8 +239,8 @@
                                                                 id="basic_facility_section_remove">
                                                                 <div class="row add_item">
                                                                     <div class="col-md-6">
-                                                                        <label for="facility_name"
-                                                                            class="form-label">Room Facilities </label>
+                                                                        <label for="facility_name" class="form-label">Room
+                                                                            Facilities </label>
                                                                         <select name="facility_name[]"
                                                                             id="basic_facility_name" class="form-control">
                                                                             <option value="">Select Facility</option>

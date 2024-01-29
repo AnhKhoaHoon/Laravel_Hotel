@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Facility;
+use App\Models\MultiImage;
 use App\Models\Room;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
@@ -14,7 +15,9 @@ class RoomController extends Controller
     {
         $edit_data = Room::find($id);
         $basic_facility = Facility::where('room_id', 'id')->get();
-        return view('backend.all_room.rooms.edit_rooms', compact('edit_data', 'basic_facility'));
+        $multi_imgs = MultiImage::where('room_id', 'id')->get();
+
+        return view('backend.all_room.rooms.edit_rooms', compact('edit_data', 'basic_facility', 'multi_imgs'));
     }
     public function UpdateRoom(Request $request, $id)
     {

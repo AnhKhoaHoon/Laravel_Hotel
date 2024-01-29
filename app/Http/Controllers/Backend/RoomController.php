@@ -38,5 +38,24 @@ class RoomController extends Controller
             Image::make($image)->resize(550, 850)->save('upload/room_images/' . $image_gen);
             $room['image'] = $image_gen;
         }
+        $room->save();
+
+        if ($request->facility_name == null) {
+            $notification = array(
+                'message' => 'Facility Unsuccessfully',
+                'alert_type' => 'error',
+            );
+            return redirect()->back()->with($notification);
+        } else {
+            Facility::where('room_id', $id)->delete();
+            $facilities = Count($request->facility_name);
+            //dung vong lap for de tao nhiu facility
+            for ($i = 0; $i < $facilities; $i++) {
+                $f_count = new Facility();
+                $f_count->room_id = $room->id;
+                $f_count->facility_name = $request->facility_name[$i];
+                $f_count->save();
+            }
+        }
     }
 }

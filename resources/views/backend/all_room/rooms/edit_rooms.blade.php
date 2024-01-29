@@ -105,8 +105,8 @@
                                                     <label for="input12" class="form-label">Room View </label>
                                                     <select name="view" id="input9" class="form-select">
                                                         <option selected="">Choose...</option>
-                                                        <option value="Sea View">Sea View </option>
-                                                        <option value="Hill View">Hill View </option>
+                                                        <option value="Sea View" {{$edit_data->view=='Sea View' ? 'selected':'' }}>Sea View </option>
+                                                        <option value="Hill View" {{$edit_data->view=='Hill View' ? 'selected':'' }}>Hill View </option>
 
                                                     </select>
                                                 </div>
@@ -115,9 +115,9 @@
                                                     <label for="input13" class="form-label">Bed Style</label>
                                                     <select name="bed_style" id="input10" class="form-select">
                                                         <option selected="">Choose...</option>
-                                                        <option value="Queen Bed"> Queen Bed </option>
-                                                        <option value="Twin Bed">Twin Bed </option>
-                                                        <option value="King Bed">King Bed </option>
+                                                        <option value="Queen Bed" {{$edit_data->bed_style=='Queen Bed' ? 'selected':'' }}> Queen Bed </option>
+                                                        <option value="Twin Bed" {{$edit_data->bed_style=='Twin Bed' ? 'selected':'' }}>Twin Bed </option>
+                                                        <option value="King Bed" {{$edit_data->bed_style=='King Bed' ? 'selected':'' }}>King Bed </option>
                                                     </select>
                                                 </div>
                                                 <div class="col-md-12">

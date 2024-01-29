@@ -37,7 +37,7 @@
                                     <div class="card">
                                         <div class="card-body p-4">
                                             <h5 class="mb-4">Update Room </h5>
-                                            <form class="row g-3" action="update.room" method="post"
+                                            <form class="row g-3" action="{{route('update.room',$edit_data->id)}}" method="post"
                                                 enctype="multipart/form-data">
                                                 @csrf
                                                 <div class="col-md-12">
@@ -78,7 +78,7 @@
                                                         <img id="showImage"
                                                             src="{{ !empty($multi_images->multi_img) ? url('upload/room_images/multi_images' . $multi_images->multi_img) : url('upload/no_image.jpg') }}"
                                                             alt="Admin" class="bg-primary" width="70" height="50">
-                                                        <a href="">
+                                                        <a href="{{ route('multi.image.delete', $multi_images->id) }}">
                                                             <i class="Ini Ini-close">
                                                             </i>
                                                         </a>
@@ -120,7 +120,8 @@
                                                             {{ $edit_data->view == 'Sea View' ? 'selected' : '' }}>Sea View
                                                         </option>
                                                         <option value="Hill View"
-                                                            {{ $edit_data->view == 'Hill View' ? 'selected' : '' }}>Hill View
+                                                            {{ $edit_data->view == 'Hill View' ? 'selected' : '' }}>Hill
+                                                            View
                                                         </option>
 
                                                     </select>
@@ -131,13 +132,16 @@
                                                     <select name="bed_style" id="input10" class="form-select">
                                                         <option selected="">Choose...</option>
                                                         <option value="Queen Bed"
-                                                            {{ $edit_data->bed_style == 'Queen Bed' ? 'selected' : '' }}> Queen
+                                                            {{ $edit_data->bed_style == 'Queen Bed' ? 'selected' : '' }}>
+                                                            Queen
                                                             Bed </option>
                                                         <option value="Twin Bed"
-                                                            {{ $edit_data->bed_style == 'Twin Bed' ? 'selected' : '' }}>Twin
+                                                            {{ $edit_data->bed_style == 'Twin Bed' ? 'selected' : '' }}>
+                                                            Twin
                                                             Bed </option>
                                                         <option value="King Bed"
-                                                            {{ $edit_data->bed_style == 'King Bed' ? 'selected' : '' }}>King
+                                                            {{ $edit_data->bed_style == 'King Bed' ? 'selected' : '' }}>
+                                                            King
                                                             Bed </option>
                                                     </select>
                                                 </div>

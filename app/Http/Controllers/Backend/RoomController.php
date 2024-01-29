@@ -49,7 +49,9 @@ class RoomController extends Controller
                 'alert_type' => 'error',
             );
             return redirect()->back()->with($notification);
-        } else {
+        }
+        else
+        {
             Facility::where('room_id', $id)->delete();
             $facilities = Count($request->facility_name);
             //dung vong lap for de tao nhiu facility
@@ -60,5 +62,48 @@ class RoomController extends Controller
                 $f_count->save();
             }
         }
+        if($room->save()){
+            $files = $request->multi_img;
+            if(!empty($files)){
+                $subimage = MultiImage::where('room_id',$id)->get()->toArray();
+                MultiImage::where('room_id',$id)->delete();
+            }
+            if(!empty($files)){
+                foreach($files as $file){
+                    $imgName = date('YmdHi').$file->getClientOriginalName();
+                    $file->move('upload/room_images/multi_images/',$imgName);
+                    $subimage['multi_img'] = $imgName;
+                    $subimage = new MultiImage();
+                    $subimage->room_id = $room->id;
+                    $subimage->multi_img = $imgName;
+                    $subimage->save();
+                }
+            }
+
+        }
+        $notification = array(
+            'message'=>'Update Room Successfully',
+            'alert-type'=>'success',
+        );
+        return redirect()->back()->with($notification);
+    }
+    public function MultiImageDelete($id)
+    {
+        $delete_data = MultiImage::where('id', $id)->first();
+        if ($delete_data) {
+            $imgPath = $delete_data->multi_img;
+            if (file_exists($imgPath)) {
+                unlink($imgPath);
+                echo "Image Unlinked Successfully";
+            } else {
+                echo "Image Unlinked Unsuccessfully";
+            }
+        }
+        MultiImage::where('id', $id)->delete();
+        $notification = array(
+            'message' => 'Multi Image Delete Successfully',
+            "alert-type" => 'success',
+        );
+        return redirect()->back()->with($notification);
     }
 }

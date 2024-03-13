@@ -56,7 +56,7 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
         Route::post('/team/update', 'UpdateTeam')->name('team.update');
         Route::get('/team/delete/{id}', 'DeleteTeam')->name('delete.team');
     });
-    //Todo Book Area Route
+    //Todo Book Area Routee
     Route::controller(BookAreaController::class)->group(function () {
         Route::get('/book/area/', 'BookArea')->name('book.area');
         Route::post('/book/area/update', 'BookAreaUpdate')->name('book.area.update');

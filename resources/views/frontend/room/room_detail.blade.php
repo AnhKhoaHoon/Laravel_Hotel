@@ -11,7 +11,7 @@
                     <li><i class='bx bx-chevron-right'></i></li>
                     <li>Room Details </li>
                 </ul>
-                <h3>Room Details</h3>
+                < <h3>{{ $room->type->name }}</h3>
             </div>
         </div>
     </div>
@@ -93,27 +93,18 @@
                 <div class="col-lg-8">
                     <div class="room-details-article">
                         <div class="room-details-slider owl-carousel owl-theme">
-                            <div class="room-details-item">
-                                <img src="assets/img/room/room-details-img1.jpg" alt="Images">
-                            </div>
-                            <div class="room-details-item">
-                                <img src="assets/img/room/room-details-img2.jpg" alt="Images">
-                            </div>
-                            <div class="room-details-item">
-                                <img src="assets/img/room/room-details-img3.jpg" alt="Images">
-                            </div>
+                            @foreach ($img as $item)
+                                <div class="room-details-item">
+                                    <img src="{{ asset('upload/room_images/multi_images/' . $item->multi_img) }}" alt="Images">
+                                </div>
+                            @endforeach
                         </div>
-
-
-
-
-
                         <div class="room-details-title">
-                            <h2>Double Bed Suits With Royal Express and Super Duplex Feelings</h2>
+                            <h2>{{$room->type->name}}</h2>
                             <ul>
 
                                 <li>
-                                    <b> Basic : $120/Night/Room</b>
+                                    <b> Basic : ${{$room->price}}/Night/Room</b>
                                 </li>
 
                             </ul>
@@ -121,46 +112,31 @@
 
                         <div class="room-details-content">
                             <p>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
-                                ut labore
-                                et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                                nisi ut aliquip
-                                ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                cillum dolore
+                               {{$room->short_desc}}
                             </p>
+
                             <p>
-                                Ecespiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
-                                totam rem aperiam,
-                                eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt
-                                explicabo. Nemo enim
-                                ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur
-                                magni dolores eos qui
-                                ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quci velit
-                                modi tempora incidunt
-                                ut labore et dolore magnam aliquam quaerat .
+                               {{$room->description}}
                             </p>
 
 
 
+
+    
 
                             <div class="side-bar-plan">
                                 <h3>Basic Plan Facilities</h3>
                                 <ul>
-                                    <li><a href="#">Lunch Facility</a></li>
-                                    <li><a href="#">Breakfast Facility</a></li>
-                                    <li><a href="#">Outdoor Kitchen</a></li>
-                                    <li><a href="#">Shampoo and Soap</a></li>
-                                    <li><a href="#">Dinner Facility</a></li>
-                                    <li><a href="#">Wireless Connectivity</a></li>
-                                    <li><a href="#">Double Bed</a></li>
-                                    <li><a href="#">5 Star Food Favor</a></li>
+                                    @foreach ($facility as $item )
+                                    <li><a href="#">{{$item->facility_name}}</a></li>
+                                    @endforeach
                                 </ul>
 
 
                             </div>
 
 
-
+                           
 
 
 
@@ -171,15 +147,15 @@
 
 
                                     <div class="services-bar-widget">
-                                        <h3 class="title">Download Brochures</h3>
+                                        <h3 class="title">Room Detail</h3>
                                         <div class="side-bar-list">
                                             <ul>
                                                 <li>
-                                                    <a href="#"> <b>Capacity : </b> 1 Person <i
+                                                    <a href="#"> <b>Capacity : </b> {{$room->room_capacity}} Person <i
                                                             class='bx bxs-cloud-download'></i></a>
                                                 </li>
                                                 <li>
-                                                    <a href="#"> <b>Size : </b> 25m2 / 276ft2 <i
+                                                    <a href="#"> <b>Size : </b> {{$room->size}}ft2 <i
                                                             class='bx bxs-cloud-download'></i></a>
                                                 </li>
 
@@ -201,11 +177,11 @@
                                         <div class="side-bar-list">
                                             <ul>
                                                 <li>
-                                                    <a href="#"> <b>View : </b> Balcony <i
+                                                    <a href="#"> <b>View : </b> {{$room->view}} <i
                                                             class='bx bxs-cloud-download'></i></a>
                                                 </li>
                                                 <li>
-                                                    <a href="#"> <b>Bad Style : </b> Smallsize / Twin <i
+                                                    <a href="#"> <b>Bed Style : </b> {{$room->bed_style}} <i
                                                             class='bx bxs-cloud-download'></i></a>
                                                 </li>
 

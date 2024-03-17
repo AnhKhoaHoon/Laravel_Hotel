@@ -13,7 +13,7 @@
                            {{$area->short_desc}}
                         </p>
                     </div>
-                    <a href="#" class="default-btn btn-bg-three">{{$area->link_url}}</a>
+                    <a href="{{$area->link_url}}" class="default-btn btn-bg-three">Quick Booking</a>
                 </div>
             </div>
 

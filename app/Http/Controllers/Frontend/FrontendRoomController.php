@@ -13,4 +13,8 @@ class FrontendRoomController extends Controller
         $room = Room::latest()->get();
         return view('frontend.room.all_rooms',compact('room'));
     }
+    public function RoomDetailPage($id){
+        $room= Room::find($id);
+        return view('frontend.room.room_detail',compact('room'));
+    }
 }

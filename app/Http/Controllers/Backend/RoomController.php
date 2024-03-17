@@ -7,7 +7,7 @@ use App\Models\Facility;
 use App\Models\MultiImage;
 use App\Models\Room;
 use App\Models\RoomNumber;
-
+use App\Models\RoomType;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 
@@ -19,7 +19,7 @@ class RoomController extends Controller
         $basic_facility = Facility::where('room_id', $id)->get();
         $multi_imgs = MultiImage::where('room_id', $id)->get();
         $room_no = RoomNumber::where('rooms_id', $id)->get();
-        return view('backend.all_room.rooms.edit_rooms', compact('edit_data', 'basic_facility', 'multi_imgs','room_no'));
+        return view('backend.all_room.rooms.edit_rooms', compact('edit_data', 'basic_facility', 'multi_imgs', 'room_no'));
     }
     public function UpdateRoom(Request $request, $id)
     {
@@ -86,6 +86,19 @@ class RoomController extends Controller
         );
         return redirect()->back()->with($notification);
     }
+    public function DeleteRoom(Request $request, $id)
+    {
+        $room = Room::find($id);
+        RoomType::where('id', $room->room_type_id)->delete();
+        MultiImage::where('room_id', $room->id)->delete();
+        Facility::where('room_id', $room->id)->delete();
+        RoomNumber::where('rooms_id', $room->id)->delete();
+        $notification = array(
+            'message' => 'Room Deleted Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
+    }
     public function StoreRoomNumber(Request $request, $id)
     {
         $data = new RoomNumber();
@@ -100,6 +113,7 @@ class RoomController extends Controller
         );
         return redirect()->back()->with($notification);
     }
+    //xoa anh
 
     public function MultiImageDelete($id)
     {
@@ -120,13 +134,30 @@ class RoomController extends Controller
         );
         return redirect()->back()->with($notification);
     }
-    public function EditRoomNumber($id){
-
+    public function EditRoomNumber($id)
+    {
+        $edit_room_no = RoomNumber::find($id);
+        return view('backend.all_room.rooms.edit_room_no', compact('edit_room_no'));
     }
-    public function UpdateRoomNumber(Request $request,$id){
-        
+    public function UpdateRoomNumber(Request $request, $id)
+    {
+        $data = RoomNumber::find($id);
+        $data->room_no = $request->room_no;
+        $data->status = $request->status;
+        $data->save();
+        $notification = array(
+            'message' => 'Edit Room Number Updated Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
     }
-    public function DeleteRoomNumber(Request $request,$id){
-        
+    public function DeleteRoomNumber(Request $request, $id)
+    {
+        RoomNumber::find($id)->delete();
+        $notification = array(
+            'message' => 'Edit Room Number Deleted Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
     }
 }

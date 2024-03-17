@@ -6,7 +6,7 @@ use App\Http\Controllers\Backend\RoomController;
 use App\Http\Controllers\Backend\BookAreaController;
 use App\Http\Controllers\Backend\RoomTypeController;
 use App\Http\Controllers\Backend\TeamController;
-
+use App\Http\Controllers\Frontend\FrontendRoomController;
 use App\Http\Controllers\UserController;
 
 use Illuminate\Support\Facades\Route;
@@ -70,20 +70,21 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
         Route::post('/room/type/update', 'RoomTypeUpdate')->name('room.type.update');
         Route::get('/room/type/delete{id}', 'RoomTypeDelete')->name('room.type.delete');
     });
+    Route::controller(FrontendRoomController::class)->group(function () {
+        Route::get('/room', 'AllFrontendRoomList')->name('all.frontend.room.list');
+    });
     //Todo Room Route
     Route::controller(RoomController::class)->group(function () {
         Route::get('/edit/room/{id}', 'EditRoom')->name('edit.room');
-        Route::post('/update/room/{id}','UpdateRoom')->name('update.room');
-        Route::get('/multi/image/delete/{id}','MultiImageDelete')->name('multi.image.delete');
-        Route::post('/store/room/no/{id}','StoreRoomNumber')->name('store.room.no');
-        Route::get('/delete/room/{id}','DeleteRoom')->name('delete.room');
+        Route::post('/update/room/{id}', 'UpdateRoom')->name('update.room');
+        Route::get('/multi/image/delete/{id}', 'MultiImageDelete')->name('multi.image.delete');
+        Route::post('/store/room/no/{id}', 'StoreRoomNumber')->name('store.room.no');
+        Route::get('/delete/room/{id}', 'DeleteRoom')->name('delete.room');
 
         //
-        Route::get('/edit/room/no/{id}','EditRoomNumber')->name('edit.room.no');
-        Route::post('/update/room/no/{id}','UpdateRoomNumber')->name('update.room.no');
-        Route::get('/delete/room/no/{id}','DeleteRoomNumber')->name('delete.room.no');
-
-
+        Route::get('/edit/room/no/{id}', 'EditRoomNumber')->name('edit.room.no');
+        Route::post('/update/room/no/{id}', 'UpdateRoomNumber')->name('update.room.no');
+        Route::get('/delete/room/no/{id}', 'DeleteRoomNumber')->name('delete.room.no');
     });
 });
 Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->name('admin.login');

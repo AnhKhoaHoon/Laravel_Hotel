@@ -24,7 +24,7 @@ return new class extends Migration
             $table->text('short_desc')->nullable();
             $table->text('description')->nullable();
             $table->integer('discount')->default(0);
-            $table->integer('status')->default(0);
+            $table->integer('status')->default(1);
             //Khoa ngoai roomType
             $table->integer('room_type_id');
             $table->timestamps();

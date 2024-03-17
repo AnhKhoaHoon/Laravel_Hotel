@@ -35,7 +35,7 @@ class RoomController extends Controller
         $room->short_desc = $request->short_desc;
         $room->description = $request->description;
         $room->discount = $request->discount;
-
+        $room->status = 1;
         //Todo upload image
         if ($request->file('image')) {
             $image = $request->file('image');

@@ -61,14 +61,14 @@ class FrontendRoomController extends Controller
     {
         $request->flash();
         $room_detail = Room::find($id);
-        $multi_img = MultiImage::where('room_id', $id);
-        $facility = Facility::where('room_id', $id);
+        $img = MultiImage::where('room_id', $id)->get();
+        $facility = Facility::where('room_id', $id)->get();
         $other_room = Room::where('id', '!=', $id)
             ->orderBy('id', 'DESC')
             ->limit(2)
             ->get();
         $room_id = $id;
-        return view('frontend.room.search_room_detail', compact('room_detail', 'multi_img', 'facility', 'other_room', 'room_id'));
+        return view('frontend.room.search_room_detail', compact('room_detail', 'img', 'facility', 'other_room', 'room_id'));
     }
     public function CheckRoomAvailability(Request $request)
     {

@@ -144,12 +144,11 @@
                     <div class="room-details-article">
 
                         <div class="room-details-slider owl-carousel owl-theme">
-                            @foreach ($multi_img as $image)
-                                <div class="room-details-item">
-                                    <img src="{{ asset('upload/room_images/multi_images/' . $image->multi_img) }}"
-                                        alt="Images">
-                                </div>
-                            @endforeach
+                            @foreach ($img as $item)
+                            <div class="room-details-item">
+                                <img src="{{ asset('upload/room_images/multi_images/' . $item->multi_img) }}" alt="Images">
+                            </div>
+                        @endforeach
 
                         </div>
 
@@ -313,7 +312,7 @@
                                         <div class="rating">
                                             <i class='bx bxs-star'></i>
                                             <i class='bx bxs-star'></i>
-                                            <i class='bx -star'></i>
+                                            <i class='bx bxs-star'></i>
                                             <i class='bx bxs-star'></i>
                                             <i class='bx bxs-star'></i>
                                         </div>

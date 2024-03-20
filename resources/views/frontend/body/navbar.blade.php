@@ -51,7 +51,7 @@
 
                         </li>
                         @php
-                            $room = App\Models\Room::latest()->get();
+                            $room = App\Models\Room::latest()->limit(2)->get();
                         @endphp
                         <li class="nav-item">
                             <a href="{{ route('all.frontend.room.list') }}" class="nav-link">

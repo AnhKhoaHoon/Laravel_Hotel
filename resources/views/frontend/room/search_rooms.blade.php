@@ -40,17 +40,17 @@
 
 
 
-                    @if ($av_room > 0 && old('persion') <= $item->total_adult)
+
                         <div class="col-lg-4 col-md-6">
                             <div class="room-card">
-                                <a href="{{ route('search_room_details', $item->id . '&check_in=' . old('check_in') . '&check_out=' . old('check_out') . '&persion=' . old('persion')) }}">
-                                    <img src="{{ asset('upload/roomimg/' . $item->image) }}" alt="Images"
+                                <a href="{{ route('search.room.detail', $item->id . '?check_in=' . old('check_in') . '&check_out=' . old('check_out') . '&persion=' . old('persion')) }}">
+                                    <img src="{{ asset('upload/room_images/' . $item->image) }}" alt="Images"
                                         style="width: 550px; height:300px;">
                                 </a>
                                 <div class="content">
                                     <h6>
                                         <a
-                                            href="{{ route('search_room_details', $item->id . '&check_in=' . old('check_in') . '&check_out=' . old('check_out') . '&persion=' . old('persion')) }}">
+                                            href="{{ route('search.room.detail', $item->id . '?check_in=' . old('check_in') . '&check_out=' . old('check_out') . '&persion=' . old('persion')) }}">
                                         </a>
                                     </h6>
                                     <ul>
@@ -67,11 +67,11 @@
                                 </div>
                             </div>
                         </div>
-                    @else
+                    
                         <?php
                         array_push($empty_array, $item->id);
                         ?>
-                    @endif
+                    
                 @endforeach
                 @if (count($rooms) == count($empty_array))
                     <p class="text-center text-danger">

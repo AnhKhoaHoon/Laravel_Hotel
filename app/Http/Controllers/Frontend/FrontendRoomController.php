@@ -56,4 +56,17 @@ class FrontendRoomController extends Controller
         $rooms = Room::withCount('room_numbers')->where('status', 1)->get();
         return view('frontend.room.search_rooms', compact('rooms', 'check_date_booking_ids'));
     }
+    public function SearchRoomDetails(Request $request, $id)
+    {
+        $request->flash();
+        $room_detail = Room::find($id);
+        $multi_img = MultiImage::where('room_id', $id);
+        $facility = Facility::where('room_id', $id);
+        $other_room = Room::where('id', '!=', $id)
+            ->orderBy('id', 'DESC')
+            ->limit(2)
+            ->get();
+        $room_id = $id;
+        return view('frontend.room.search_room_detail',compact('room_detail','multi_img','facility','other_room','room_id'));
+    }
 }

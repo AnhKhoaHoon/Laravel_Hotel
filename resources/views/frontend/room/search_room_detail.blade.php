@@ -28,7 +28,7 @@
                         <div class="side-bar-form">
                             <h3>Booking Sheet </h3>
 
-                            <form action="" method="post" id="bk_form">
+                            <form action="{{route('user_booking_store',$room_detail->id)}}" method="post" id="bk_form">
                                 @csrf
                                 <input type="hidden" name="room_id" value="{{ $room_detail->id }}">
 

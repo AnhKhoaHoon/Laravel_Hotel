@@ -21,7 +21,7 @@
 <!-- Checkout Area -->
 <section class="checkout-area pt-100 pb-70">
     <div class="container">
-        <form>
+        <form >
             <div class="row">
                 <div class="col-lg-8">
                     <div class="billing-details">
@@ -106,7 +106,7 @@
                                     <input type="text" class="form-control">
                                 </div>
                             </div>
-
+                            <p>Session Value : {{ json_encode(session('book_date')) }}</p>
                             <div class="col-lg-12 col-md-12">
                                 <div class="form-check">
                                     <input type="checkbox" class="form-check-input" id="create-an-account">

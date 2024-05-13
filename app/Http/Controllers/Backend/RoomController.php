@@ -16,9 +16,13 @@ class RoomController extends Controller
     public function EditRoom($id)
     {
         $edit_data = Room::find($id);
+
         $basic_facility = Facility::where('room_id', $id)->get();
+
         $multi_imgs = MultiImage::where('room_id', $id)->get();
+
         $room_no = RoomNumber::where('rooms_id', $id)->get();
+
         return view('backend.all_room.rooms.edit_rooms', compact('edit_data', 'basic_facility', 'multi_imgs', 'room_no'));
     }
     public function UpdateRoom(Request $request, $id)
@@ -101,18 +105,22 @@ class RoomController extends Controller
     }
     public function StoreRoomNumber(Request $request, $id)
     {
+
         $data = new RoomNumber();
         $data->rooms_id = $id;
         $data->room_type_id = $request->room_type_id;
         $data->room_no = $request->room_no;
         $data->status = $request->status;
         $data->save();
+
         $notification = array(
-            'message' => 'Add RoomNumber Successfully',
-            'alert-type' => 'success',
+            'message' => 'Room Number Added Successfully',
+            'alert-type' => 'success'
         );
+
         return redirect()->back()->with($notification);
-    }
+    } //End Method 
+
     //xoa anh
 
     public function MultiImageDelete($id)
@@ -141,9 +149,11 @@ class RoomController extends Controller
     }
     public function UpdateRoomNumber(Request $request, $id)
     {
+       
         $data = RoomNumber::find($id);
         $data->room_no = $request->room_no;
         $data->status = $request->status;
+        $data->room_type_id = $data->room_type_id;
         $data->save();
         $notification = array(
             'message' => 'Edit Room Number Updated Successfully',

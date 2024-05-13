@@ -23,6 +23,7 @@ class FrontendRoomController extends Controller
     public function RoomDetailPage($id)
     {
         $room = Room::find($id);
+       
         $img = MultiImage::where('room_id', $id)->get();
         $facility = Facility::where('room_id', $id)->get();
 

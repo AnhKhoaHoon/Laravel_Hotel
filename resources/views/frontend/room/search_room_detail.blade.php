@@ -149,13 +149,7 @@
                                 <img src="{{ asset('upload/room_images/multi_images/' . $item->multi_img) }}" alt="Images">
                             </div>
                         @endforeach
-
                         </div>
-
-
-
-
-
                         <div class="room-details-title">
                             <h2>{{ $room_detail->type->name }}</h2>
                             <ul>

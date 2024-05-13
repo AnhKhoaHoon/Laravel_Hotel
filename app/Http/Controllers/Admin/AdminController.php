@@ -18,6 +18,8 @@ class AdminController extends Controller
     {
         return view('admin.admin_login');
     }
+
+
     public function AdminLogout(Request $request)
     {
         Auth::guard('web')->logout();
@@ -90,5 +92,4 @@ class AdminController extends Controller
         );
         return redirect()->back()->with($notification);
     }
-
 }
